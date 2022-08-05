@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js" defer></script>
+        <title>Currency Converter</title>
+    </head>
+    <body>
+        <h1>Currency Converter</h1>
+        <div id="container">
+            <select name="from" id="from">
+                <option value="EUR">EUR</option>
+            </select>
+            <input type="number" name="fromAmount" id="fromAmount" /> =
+            <input type="number" name="toAmount" id="toAmount" />
+            <select name="to" id="to">
+                <option value="BAM">BAM</option>
+            </select>
+            <button id="convertBtn">Convert</button>
+            <button id="swapBtn">Swap</button>
+            <button id="ratesBtn">Get Rates</button>
+            <div id="container" style="width: 400px"></div>
+        </div>
+    </body>
+</html>
