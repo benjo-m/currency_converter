@@ -1,10 +1,6 @@
 let from = document.getElementById("from");
 let to = document.getElementById("to");
-const fromAmount = document.getElementById("fromAmount");
-const convertBtn = document.getElementById("convertBtn");
-const swapBtn = document.getElementById("swapBtn");
-const ratesBtn = document.getElementById("ratesBtn");
-let container = document.getElementById("container");
+let chart_container = document.getElementById("chart-container");
 
 var myHeaders = new Headers();
 myHeaders.append("apikey", "bMbOQJhmC8iT4UBD1H6OsGg0oVhsSPkO");
@@ -17,14 +13,14 @@ var requestOptions = {
 
 let canva = document.createElement("canvas");
 canva.setAttribute("id", "myChart");
-container.appendChild(canva);
+chart_container.appendChild(canva);
 const data = {
     labels: [],
     datasets: [
         {
-            label: "My First dataset",
-            backgroundColor: "rgb(255, 99, 132)",
-            borderColor: "rgb(255, 99, 132)",
+            label: "Last month",
+            backgroundColor: "rgb(61, 134, 245)",
+            borderColor: "rgb(61, 134, 245)",
             data: [],
         },
     ],
@@ -43,7 +39,7 @@ const destroyChart = () => {
 };
 
 let getRates = () => {
-    fetch("https://api.apilayer.com/exchangerates_data/latest", requestOptions)
+    fetch("https://api.apilayer.com/fixer/latest", requestOptions)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -62,8 +58,9 @@ let getRates = () => {
 getRates();
 
 const convert = () => {
+    const fromAmount = document.getElementById("fromAmount");
     fetch(
-        `https://api.apilayer.com/exchangerates_data/convert?to=${to.value}&from=${from.value}&amount=${fromAmount.value}`,
+        `https://api.apilayer.com/fixer/convert?to=${to.value}&from=${from.value}&amount=${fromAmount.value}`,
         requestOptions
     )
         .then((res) => res.json())
@@ -83,8 +80,8 @@ let swap = () => {
     convert();
 };
 
-convertBtn.addEventListener("click", convert);
-swapBtn.addEventListener("click", swap);
+document.getElementById("convertBtn").addEventListener("click", convert);
+document.getElementById("swapBtn").addEventListener("click", swap);
 
 let temp_date = new Date();
 temp_date.setMonth(temp_date.getMonth() - 1);
@@ -95,14 +92,14 @@ const createChart = (labels, dataArr) => {
     destroyChart();
     let canva = document.createElement("canvas");
     canva.setAttribute("id", "myChart");
-    container.appendChild(canva);
+    chart_container.appendChild(canva);
     const data = {
         labels: labels,
         datasets: [
             {
-                label: "My First dataset",
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgb(255, 99, 132)",
+                label: "Last month",
+                backgroundColor: "rgb(61, 134, 245)",
+                borderColor: "rgb(61, 134, 245)",
                 data: dataArr,
             },
         ],
@@ -119,7 +116,7 @@ const createChart = (labels, dataArr) => {
 
 const monthlyRates = () => {
     fetch(
-        `https://api.apilayer.com/exchangerates_data/timeseries?start_date=${start_date}&end_date=${end_date}&symbols=${from.value},${to.value}`,
+        `https://api.apilayer.com/fixer/timeseries?start_date=${start_date}&end_date=${end_date}&symbols=${from.value},${to.value}`,
         requestOptions
     )
         .then((res) => res.json())
@@ -142,4 +139,4 @@ const monthlyRates = () => {
         });
 };
 
-ratesBtn.addEventListener("click", monthlyRates);
+document.getElementById("ratesBtn").addEventListener("click", monthlyRates);

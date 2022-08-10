@@ -10,7 +10,7 @@
         <title>Currency Converter</title>
     </head>
     <body>
-        <h1>Currency Converter</h1>
+        <h1 id="title">Currency Converter</h1>
         <div id="container">
             <select name="from" id="from">
                 <option value="EUR">EUR</option>
@@ -20,10 +20,12 @@
             <select name="to" id="to">
                 <option value="BAM">BAM</option>
             </select>
-            <button id="convertBtn">Convert</button>
-            <button id="swapBtn">Swap</button>
-            <button id="ratesBtn">Get Rates</button>
-            <div id="container" style="width: 400px"></div>
+            <div id="buttons">
+                <button id="convertBtn">Convert</button>
+                <button id="swapBtn">Swap</button>
+                <button id="ratesBtn">Get Rates</button>
+            </div>
+            <div id="chart-container"></div>
         </div>
     </body>
 </html>
