@@ -2,4 +2,4 @@
 
 Currency converter app made with Fixer API and Chart.js
 
-GitHub Pages: https://benjo-m.github.io/currency_converter/
+Netlify: https://currency-converter-benjo-m.netlify.app/
